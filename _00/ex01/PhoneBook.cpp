@@ -14,9 +14,18 @@ void	PhoneBook::_addContact(void) {
 		this->_contacts[this->_nbContacts]._setLastName(this->_contacts[this->_nbContacts]._getInput("last name"));
 		this->_contacts[this->_nbContacts]._setNickname(this->_contacts[this->_nbContacts]._getInput("nickname"));
 		this->_contacts[this->_nbContacts]._setPhoneNumber(this->_contacts[this->_nbContacts]._getInput("phone number"));
+		this->_contacts[this->_nbContacts]._setDarkestSecret(this->_contacts[this->_nbContacts]._getInput("darkest secret"));
 		this->_nbContacts++;
-	} else {
-		std::cout << "Phone book is full." << std::endl;
+	}
+	else{
+		this->_contacts[0]._setIndex(0);
+		this->_contacts[0]._setFirstName(this->_contacts[0]._getInput("first name"));
+		this->_contacts[0]._setLastName(this->_contacts[0]._getInput("last name"));
+		this->_contacts[0]._setNickname(this->_contacts[0]._getInput("nickname"));
+		this->_contacts[0]._setPhoneNumber(this->_contacts[0]._getInput("phone number"));
+		this->_contacts[0]._setDarkestSecret(this->_contacts[0]._getInput("darkest secret"));
+		this->_nbContacts = 1;
+		
 	}
 }
 
@@ -37,6 +46,7 @@ void	PhoneBook::_searchContact(void) {
 		std::cout << "Last name: " << this->_contacts[index]._getLastName() << std::endl;
 		std::cout << "Nickname: " << this->_contacts[index]._getNickname() << std::endl;
 		std::cout << "Phone number: " << this->_contacts[index]._getPhoneNumber() << std::endl;
+		std::cout << "Darkest secret: " << this->_contacts[index]._getDarkestSecret() << std::endl;
 	} else {
 		std::cout << "Invalid index." << std::endl;
 	}
@@ -50,14 +60,15 @@ void	PhoneBook::_displayContacts(void) {
 	std::cout << std::setw(10) << "Last name" << "|";
 	std::cout << std::setw(10) << "Nickname" << std::endl;
 	i = 0;
-	while (i < this->_nbContacts) {
-		std::cout << std::setw(10) << this->_contacts[i]._getIndex() << "|";
+	while (i < MAX_CONTACTS && this->_contacts[i]._isInitialized()) {
+		std::cout << std::setw(10) << std::right << this->_contacts[i]._getIndex() << "|";
 		std::cout << std::setw(10) << this->_contacts[i]._getFirstName() << "|";
 		std::cout << std::setw(10) << this->_contacts[i]._getLastName() << "|";
 		std::cout << std::setw(10) << this->_contacts[i]._getNickname() << std::endl;
 		i++;
 	}
 }
+
 
 void	PhoneBook::_prompt(void) const {
 	std::cout << "-----------------------------------------" << std::endl;

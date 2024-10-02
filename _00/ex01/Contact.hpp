@@ -37,6 +37,13 @@ public:
 
 	void		_setPhoneNumber(std::string _phoneNumber);
 	std::string	_getPhoneNumber(void) const;
+
+	void		_setDarkestSecret(std::string _darkestSecret);
+	std::string	_getDarkestSecret(void) const;
+
+	int			_isInitialized(void);
+
+	// std::string	_formatField(std::string field, int width);
 	
 	std::string _getInput(std::string field) const;
 };
